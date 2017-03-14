@@ -1,6 +1,6 @@
 /*
 SQLyog Community v12.2.0 (32 bit)
-MySQL - 5.5.49-0+deb8u1 : Database - expedientes
+MySQL - 5.5.54-0+deb7u2 : Database - expedientes
 *********************************************************************
 */
 
@@ -13,6 +13,8 @@ MySQL - 5.5.49-0+deb8u1 : Database - expedientes
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`expedientes` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `expedientes`;
 
 /*Table structure for table `cargos` */
 
@@ -68,19 +70,13 @@ CREATE TABLE `expedientes` (
   PRIMARY KEY (`id_expediente`),
   KEY `id_persona` (`id_persona`),
   CONSTRAINT `expedientes_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `personal` (`id_persona`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `expedientes` */
 
 insert  into `expedientes`(`id_expediente`,`cod_expediente`,`id_persona`,`id_estatus`,`fec_creacion`) values 
-(7,'V-18020594',14,1,'2017-03-14'),
-(8,'V-19195435',1,1,'2017-03-14'),
-(9,'V-12345678',15,1,'2017-03-14'),
-(10,'V-12345679',16,1,'2017-03-14'),
-(11,'V-18020596',17,1,'2017-03-14'),
-(12,'V-19122018',19,1,'2017-03-14'),
-(13,'V-19122012',20,1,'2017-03-14'),
-(14,'V-19195436',21,1,'2017-03-14');
+(1,'V-19195437',1,1,'2017-03-14'),
+(2,'V-18020594',2,1,'2017-03-14');
 
 /*Table structure for table `expedientes_detalles` */
 
@@ -100,91 +96,6 @@ CREATE TABLE `expedientes_detalles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `expedientes_detalles` */
-
-insert  into `expedientes_detalles`(`id_expediente`,`id_folio`,`id_tipdoc`,`ubi_docserver`,`fec_creado`,`id_estatus`) values 
-(7,1,1,'/V-18020594/DOCUMENTOS_PERSONALES/oferta_0.pdf','2017-03-14',1),
-(7,1,2,'/V-18020594/DOCUMENTOS_PERSONALES/curriculo_0.pdf','2017-03-14',1),
-(7,1,3,'/V-18020594/DOCUMENTOS_PERSONALES/evaluacionrequisitos_0.pdf','2017-03-14',1),
-(7,1,4,'/V-18020594/DOCUMENTOS_PERSONALES/ingreso_0.pdf','2017-03-14',1),
-(7,1,5,'/V-18020594/DOCUMENTOS_PERSONALES/resolucion_0.pdf','2017-03-14',1),
-(7,1,6,'/V-18020594/DOCUMENTOS_PERSONALES/tomaposesion_0.pdf','2017-03-14',1),
-(7,1,7,'/V-18020594/DOCUMENTOS_PERSONALES/notificaciondesignacion_0.pdf','2017-03-14',1),
-(7,1,8,'/V-18020594/DOCUMENTOS_PERSONALES/notificacionpoliticas_0.pdf','2017-03-14',1),
-(7,1,9,'/V-18020594/DOCUMENTOS_PERSONALES/registroinhabilitados_0.pdf','2017-03-14',1),
-(7,1,10,'/V-18020594/DOCUMENTOS_PERSONALES/amonestaciones_0.pdf','2017-03-14',1),
-(7,1,11,'/V-18020594/DOCUMENTOS_PERSONALES/ascensos_0.pdf','2017-03-14',1),
-(7,1,12,'/V-18020594/DOCUMENTOS_PERSONALES/reenganche_0.pdf','2017-03-14',1),
-(7,1,13,'/V-18020594/DOCUMENTOS_PERSONALES/trasladounidad_0.pdf','2017-03-14',1),
-(7,1,14,'/V-18020594/DOCUMENTOS_PERSONALES/documentosegreso_0.pdf','2017-03-14',1),
-(7,2,16,'/V-18020594/FORMACION_ACADEMICA/titulos_0.pdf','2017-03-14',1),
-(7,2,17,'/V-18020594/FORMACION_ACADEMICA/certificadoscursos_0.pdf','2017-03-14',1),
-(7,2,18,'/V-18020594/FORMACION_ACADEMICA/pasantias_0.pdf','2017-03-14',1),
-(7,2,19,'/V-18020594/FORMACION_ACADEMICA/cualquierotraestudios_0.pdf','2017-03-14',1),
-(7,3,20,'/V-18020594/ANTIGUEDAD/antecedenteservicios_0.pdf','2017-03-14',1),
-(7,3,21,'/V-18020594/ANTIGUEDAD/constanciastrabajosanteriores_0.pdf','2017-03-14',1),
-(7,4,22,'/V-18020594/BENEFICIOS_SOCIOECONOMICOS/cajaahorros_0.pdf','2017-03-14',1),
-(7,4,23,'/V-18020594/BENEFICIOS_SOCIOECONOMICOS/fondoespecial_0.pdf','2017-03-14',1),
-(7,4,24,'/V-18020594/BENEFICIOS_SOCIOECONOMICOS/seguroshcm_0.pdf','2017-03-14',1),
-(7,4,25,'/V-18020594/BENEFICIOS_SOCIOECONOMICOS/copiafamiliares_0.pdf','2017-03-14',1),
-(7,4,26,'/V-18020594/BENEFICIOS_SOCIOECONOMICOS/partidasnacimiento_0.pdf','2017-03-14',1),
-(7,4,27,'/V-18020594/BENEFICIOS_SOCIOECONOMICOS/actamatrimonio_0.pdf','2017-03-14',1),
-(7,5,28,'/V-18020594/FIDEICOMISO/oficioaperturafideicomiso_0.pdf','2017-03-14',1),
-(7,5,29,'/V-18020594/FIDEICOMISO/anticiposprestaciones_0.pdf','2017-03-14',1),
-(7,5,30,'/V-18020594/FIDEICOMISO/documentosprobatorios_0.pdf','2017-03-14',1),
-(7,6,31,'/V-18020594/AUSENCIAS/inasistencias_0.pdf','2017-03-14',1),
-(7,6,32,'/V-18020594/AUSENCIAS/permisos_0.pdf','2017-03-14',1),
-(7,6,33,'/V-18020594/AUSENCIAS/reposos_0.pdf','2017-03-14',1),
-(7,6,34,'/V-18020594/AUSENCIAS/vacaciones_0.pdf','2017-03-14',1),
-(7,7,35,'/V-18020594/SEGURO_SOCIAL_OBLIGATORIO/formaingreso_0.pdf','2017-03-14',1),
-(7,7,36,'/V-18020594/SEGURO_SOCIAL_OBLIGATORIO/constanciaegreso_0.pdf','2017-03-14',1),
-(7,7,37,'/V-18020594/SEGURO_SOCIAL_OBLIGATORIO/constanciaivss_0.pdf','2017-03-14',1),
-(7,7,38,'/V-18020594/SEGURO_SOCIAL_OBLIGATORIO/constanciaotraivss_0.pdf','2017-03-14',1),
-(7,8,39,'/V-18020594/VARIOS/declaracionjurada_0.pdf','2017-03-14',1),
-(7,8,40,'/V-18020594/VARIOS/copiarif_0.pdf','2017-03-14',1),
-(7,8,41,'/V-18020594/VARIOS/ari_0.pdf','2017-03-14',1),
-(7,8,42,'/V-18020594/VARIOS/comprobantearc_0.pdf','2017-03-14',1),
-(7,8,43,'/V-18020594/VARIOS/notificacionesvarias_0.pdf','2017-03-14',1),
-(8,1,1,'/V-19195435/DOCUMENTOS_PERSONALES/oferta_0.pdf','2017-03-14',1),
-(8,1,2,'/V-19195435/DOCUMENTOS_PERSONALES/curriculo_0.pdf','2017-03-14',1),
-(8,1,3,'/V-19195435/DOCUMENTOS_PERSONALES/evaluacionrequisitos_0.pdf','2017-03-14',1),
-(8,1,4,'/V-19195435/DOCUMENTOS_PERSONALES/ingreso_0.pdf','2017-03-14',1),
-(8,1,5,'/V-19195435/DOCUMENTOS_PERSONALES/resolucion_0.pdf','2017-03-14',1),
-(8,1,6,'/V-19195435/DOCUMENTOS_PERSONALES/tomaposesion_0.pdf','2017-03-14',1),
-(8,1,7,'/V-19195435/DOCUMENTOS_PERSONALES/notificaciondesignacion_0.pdf','2017-03-14',1),
-(8,1,8,'/V-19195435/DOCUMENTOS_PERSONALES/notificacionpoliticas_0.pdf','2017-03-14',1),
-(8,1,9,'/V-19195435/DOCUMENTOS_PERSONALES/registroinhabilitados_0.pdf','2017-03-14',1),
-(8,1,10,'/V-19195435/DOCUMENTOS_PERSONALES/amonestaciones_0.pdf','2017-03-14',1),
-(8,1,11,'/V-19195435/DOCUMENTOS_PERSONALES/ascensos_0.pdf','2017-03-14',1),
-(8,1,12,'/V-19195435/DOCUMENTOS_PERSONALES/reenganche_0.pdf','2017-03-14',1),
-(8,1,13,'/V-19195435/DOCUMENTOS_PERSONALES/trasladounidad_0.pdf','2017-03-14',1),
-(8,1,14,'/V-19195435/DOCUMENTOS_PERSONALES/documentosegreso_0.pdf','2017-03-14',1),
-(8,1,15,'/V-19195435/DOCUMENTOS_PERSONALES/liquidacionprestaciones_0.pdf','2017-03-14',1),
-(13,1,1,'/v-19122012/DOCUMENTOS_PERSONALES/oferta_0.pdf','2017-03-14',1),
-(13,1,2,'/v-19122012/DOCUMENTOS_PERSONALES/curriculo_0.pdf','2017-03-14',1),
-(13,1,3,'/v-19122012/DOCUMENTOS_PERSONALES/evaluacionrequisitos_0.pdf','2017-03-14',1),
-(13,1,4,'/v-19122012/DOCUMENTOS_PERSONALES/ingreso_0.pdf','2017-03-14',1),
-(13,2,16,'/v-19122012/FORMACION_ACADEMICA/titulos_0.pdf','2017-03-14',1),
-(13,2,17,'/v-19122012/FORMACION_ACADEMICA/certificadoscursos_0.pdf','2017-03-14',1),
-(13,2,18,'/v-19122012/FORMACION_ACADEMICA/pasantias_0.pdf','2017-03-14',1),
-(13,2,19,'/v-19122012/FORMACION_ACADEMICA/cualquierotraestudios_0.pdf','2017-03-14',1),
-(13,3,20,'/v-19122012/ANTIGUEDAD/antecedenteservicios_0.pdf','2017-03-14',1),
-(13,3,21,'/v-19122012/ANTIGUEDAD/constanciastrabajosanteriores_0.pdf','2017-03-14',1),
-(13,4,22,'/v-19122012/BENEFICIOS_SOCIOECONOMICOS/cajaahorros_0.pdf','2017-03-14',1),
-(13,4,23,'/v-19122012/BENEFICIOS_SOCIOECONOMICOS/fondoespecial_0.pdf','2017-03-14',1),
-(13,4,24,'/v-19122012/BENEFICIOS_SOCIOECONOMICOS/seguroshcm_0.pdf','2017-03-14',1),
-(13,5,28,'/v-19122012/FIDEICOMISO/oficioaperturafideicomiso_0.pdf','2017-03-14',1),
-(13,5,29,'/v-19122012/FIDEICOMISO/anticiposprestaciones_0.pdf','2017-03-14',1),
-(13,5,30,'/v-19122012/FIDEICOMISO/documentosprobatorios_0.pdf','2017-03-14',1),
-(13,6,31,'/v-19122012/AUSENCIAS/inasistencias_0.pdf','2017-03-14',1),
-(13,6,32,'/v-19122012/AUSENCIAS/permisos_0.pdf','2017-03-14',1),
-(13,6,33,'/v-19122012/AUSENCIAS/reposos_0.pdf','2017-03-14',1),
-(13,6,34,'/v-19122012/AUSENCIAS/vacaciones_0.pdf','2017-03-14',1),
-(13,8,39,'/V-19122012/VARIOS/declaracionjurada_0.pdf','2017-03-14',1),
-(13,8,40,'/V-19122012/VARIOS/copiarif_0.pdf','2017-03-14',1),
-(14,1,1,'/V-19195436/DOCUMENTOS_PERSONALES/oferta_0.jpg','2017-03-14',1),
-(14,1,2,'/V-19195436/DOCUMENTOS_PERSONALES/curriculo_0.jpg','2017-03-14',1),
-(14,2,16,'/V-19195436/FORMACION_ACADEMICA/titulos_0.jpg','2017-03-14',1),
-(14,2,16,'/V-19195436/FORMACION_ACADEMICA/titulos_0.pdf','2017-03-14',1);
 
 /*Table structure for table `expedientes_prestamos` */
 
@@ -206,9 +117,12 @@ CREATE TABLE `expedientes_prestamos` (
   KEY `id` (`id`),
   CONSTRAINT `expedientes_prestamos_ibfk_1` FOREIGN KEY (`id_expediente`) REFERENCES `expedientes` (`id_expediente`),
   CONSTRAINT `expedientes_prestamos_ibfk_2` FOREIGN KEY (`id_persona`) REFERENCES `personal` (`id_persona`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `expedientes_prestamos` */
+
+insert  into `expedientes_prestamos`(`id`,`id_expediente`,`id_persona`,`fec_prestamo`,`fec_devolucion`,`aprobado`,`autorizado_por`,`documento`,`numero_documento`,`fec_documento`) values 
+(1,1,2,'2017-03-14 00:00:00',NULL,'S',2,'MEMORANDO','C2017001','2017-03-31');
 
 /*Table structure for table `folios` */
 
@@ -337,20 +251,13 @@ CREATE TABLE `personal` (
   KEY `id_cargo` (`id_cargo`),
   CONSTRAINT `personal_ibfk_1` FOREIGN KEY (`id_ubicacion`) REFERENCES `ubicaciones` (`id_ubicacion`),
   CONSTRAINT `personal_ibfk_2` FOREIGN KEY (`id_cargo`) REFERENCES `cargos` (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `personal` */
 
 insert  into `personal`(`id_persona`,`nombres`,`apellidos`,`sexo`,`fec_nac`,`tip_dociden`,`doc_iden`,`id_ubicacion`,`id_cargo`,`id_estatus`) values 
-(1,'DENINSON','CABEZA','M','2017-03-08','CED','V-19195435',1,1,1),
-(14,'MARCOS ARLINDO','DE ANDRADE CARRERA','M','1986-03-24','CED','V-18020594',1,1,1),
-(15,'kjsadhjka','jhakjhkad','F','2017-03-21','CED','V-12345678',1,1,1),
-(16,'addsasd','asdadasd','M','2017-03-14','CED','v-12345679',10,9,1),
-(17,'kjdhkajsh','khakjsdhkja','M','2017-03-14','CED','v-18020596',9,2,1),
-(18,'hola','prueba','F','2017-03-14','CED','V-19122018',1,8,1),
-(19,'hola','prueba','F','2017-03-14','CED','V-19122018',1,8,1),
-(20,'pedro','rodriguez','F','2017-03-14','CED','V-19122012',1,1,1),
-(21,'deninson javier','cabeza uscategui','M','1989-10-04','CED','V-19195436',9,4,1);
+(1,'DENINSON','CABEZA','M','1989-10-04','CED','V-19195437',1,1,1),
+(2,'MARCOS','DE ANDRADE','M','2017-03-14','CED','V-18020594',1,1,1);
 
 /*Table structure for table `tipo_grupos` */
 
@@ -472,7 +379,8 @@ CREATE TABLE `usuarios` (
 /*Data for the table `usuarios` */
 
 insert  into `usuarios`(`id_usuario`,`id_persona`,`nom_usuario`,`clave`,`id_grupo`,`id_estatus`) values 
-(1,1,'DCABEZA','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,1);
+(1,1,'DCABEZA','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,1),
+(2,2,'MDEANDRADE','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',2,1);
 
 /*Table structure for table `usuarios_grupos` */
 

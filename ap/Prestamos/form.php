@@ -94,7 +94,7 @@ $listado_grupos = $ListasDependientes->getListadoGruposActivos();
         </div>
         <?php endif;?>   
   <div class="form-group col-sm-12">
-      <a class="btn btn-default" href="<?php echo full_url?>/ap/Prrestamos/index.php">Regresar</a>
+      <a class="btn btn-default" href="<?php echo full_url?>/ap/Prestamos/index.php">Regresar</a>
       <button class="btn btn-success">Guardar</button>
   </div>
 <?php include('../../view_footer_solicitud.php')?>
