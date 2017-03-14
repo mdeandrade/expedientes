@@ -34,6 +34,11 @@
 <script src="<?php echo full_url;?>/web/js/jquery.js"></script>
 <script src="<?php echo full_url;?>/web/js/jqBootstrapValidation.js"></script>
 <script src="<?php echo full_url;?>/web/js/datatables.js"></script>
+<script src="<?php echo full_url;?>/web/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo full_url;?>/web/js/jszip.min.js"></script>
+<script src="<?php echo full_url;?>/web/js/pdfmake.min.js"></script>
+<script src="<?php echo full_url;?>/web/js/vfs_fonts.js"></script>
+<script src="<?php echo full_url;?>/web/js/buttons.html5.min.js"></script>
 <script src="<?php echo full_url;?>/web/js/fnReloadAjax.js"></script>
 
 <script type="text/javascript" src="<?php echo full_url;?>/web/bootstrap/js/moment/moment.js"></script>
@@ -44,7 +49,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-        $('#fec_nac').datetimepicker({
+        $('#fec_nac,#fec_prestamo,#fec_documento,#fec_devolucion').datetimepicker({
 			 viewMode: 'days',
 			 locale: 'es',
 			 format: 'YYYY-MM-DD',

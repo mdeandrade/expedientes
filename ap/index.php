@@ -61,6 +61,7 @@ $values = $_REQUEST;
                         
 			$_SESSION['id_usuario'] = $q[0]['id_usuario'];
 			$_SESSION['nom_usuario'] = $q[0]['nom_usuario'];
+                        $_SESSION['id_grupo'] = $q[0]['id_grupo'];
 			executeBienvenida($values);
 		}
 		else

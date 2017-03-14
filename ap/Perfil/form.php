@@ -30,6 +30,7 @@
             <?php endif;?>
         </div>
     <div class="col-sm-12 col-sm-12">
+        <div class="bg-warning">La clave debe contener entre 6 y 12 caracteres</div>
         Campos obligatorios <small class="text-danger">(*)</small>
     </div>   
     <div class="col-sm-12 col-sm-12">

@@ -50,11 +50,15 @@ $(document).ready(function() {
         "scrollX": true,
         "processing": true,
         "serverSide": true,
-		 "sDom": 'ltrip',
+		 /*"sDom": 'ltrip',*/
         "ajax": "<?php echo full_url."/ap/expedientes/index.php?action=list_json"?>",
 		"language": {
                 "url": "<?php echo full_url."/web/js/"?>datatables.spanish.lang"
-        },
+        },buttons: [
+            'excelHtml5',
+            'csvHtml5',
+        ],
+         dom: 'Brtip',
         "columns": [
             { "data": "id_expediente" },
             { "data": "cod_expediente" },
@@ -62,6 +66,7 @@ $(document).ready(function() {
             { "data": "nom_estatus" },
             { "data": "actions" }
         ],
+                
       "aoColumnDefs": [
           { 'bSortable': false, 'aTargets': [ 4 ] }
        ]				

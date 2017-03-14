@@ -68,7 +68,7 @@
 							</div>
 							<div class="row">
                                                             <div align="center">
-                                                                <a href="<?php echo full_url;?>/ap/registrarse.php"> ¡Recuperación de clave !</a>
+                                                                <!--<a href="<?php echo full_url;?>/ap/registrarse.php"> ¡Recuperación de clave !</a>-->
 								<hr>
                                                             </div>
                                                             

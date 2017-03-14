@@ -7,22 +7,22 @@
 	 */
 
 	/**
-	 * Description of Expedientes
+	 * Description of ExpedientesPrestamos
 	 *
 	 * @author marcos
 	 */
-	class Expedientes {
+	class ExpedientesPrestamos {
 		
 		public function __construct() 
 		{
 			
 		}
-		public function getExpedientesList($values)
+		public function getExpedientesPrestamosList($values)
 		{	
 			$columns = array();
-			$columns[0] = 'id_expediente';
+			$columns[0] = 'id_expediente_prestamo';
 			$columns[1] = 'cod_expediente';
-			$columns[2] = "apellidos";
+			$columns[2] = 'apellidos';
 			$columns[3] = 'nom_estatus';
 			$column_order = $columns[0];
 			$where = '1 = 1';
@@ -32,7 +32,7 @@
 			
 			if(isset($values['columns'][0]['search']['value']) and $values['columns'][0]['search']['value']!='')
 			{
-				$where.=" AND id_expediente = ".$values['columns'][0]['search']['value']."";
+				$where.=" AND id_expediente_prestamo = ".$values['columns'][0]['search']['value']."";
 				//echo $values['columns'][0]['search']['value'];die;
 			}
 			if(isset($values['columns'][1]['search']['value']) and $values['columns'][1]['search']['value']!='')
@@ -63,32 +63,35 @@
 			}
 			//echo $column_order;die;
             $ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes
-			->select("*,nom_estatus, concat(apellidos, ' ', nombres) as nom_funcionario")
-			->order("$column_order $order")
-                        ->join("estatus","INNER JOIN estatus e on e.id_estatus = expedientes.id_estatus")        
-			->join("personal","INNER JOIN personal p on p.id_persona = expedientes.id_persona")
-                        ->where("$where")
+			$q = $ConnectionORM->getConnect()->expedientes_prestamos
+			->select("*, nom_estatus")
+                        ->join("expedientes","INNER JOIN expedientes exp on exp.id_expediente = expedientes_prestamos.id_expediente")  
+                        ->join("personal","INNER JOIN personal p on p.id_persona = exp.id_persona")        
+                        ->join("estatus","INNER JOIN estatus e on e.id_estatus = exp.id_estatus")   
+			
+     
+			->where("$where")
+                        ->order("$column_order $order")
 			->limit($limit,$offset);
 			//echo $q;die;
 			return $q; 			
 		}
-		public function getCountExpedientesList($values)
+		public function getCountExpedientesPrestamosList($values)
 		{	
 			$where = '1 = 1';
 			if(isset($values['columns'][0]['search']['value']) and $values['columns'][0]['search']['value']!='')
 			{
-				$where.=" AND id_expediente = ".$values['columns'][0]['search']['value']."";
+				$where.=" AND id_expediente_prestamo = ".$values['columns'][0]['search']['value']."";
 				//echo $values['columns'][0]['search']['value'];die;
 			}
 			if(isset($values['columns'][1]['search']['value']) and $values['columns'][1]['search']['value']!='')
 			{
-				$where.=" AND upper(cod_expediente) like ('%".$values['columns'][1]['search']['value']."%')";
+				$where.=" AND upper(nom_usuario) like ('%".$values['columns'][1]['search']['value']."%')";
 				//echo $values['columns'][0]['search']['value'];die;
 			}			
 			if(isset($values['columns'][2]['search']['value']) and $values['columns'][2]['search']['value']!='')
 			{
-				$where.=" AND upper(concat(apellidos, ' ', nombres)) like ('%".$values['columns'][3]['search']['value']."%')";
+				$where.=" AND upper(nom_grupo) like ('%".$values['columns'][2]['search']['value']."%')";
 				//echo $values['columns'][0]['search']['value'];die;
 			}			
 			if(isset($values['columns'][3]['search']['value']) and $values['columns'][3]['search']['value']!='')
@@ -97,43 +100,22 @@
 				//echo $values['columns'][0]['search']['value'];die;
 			}
                         $ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes
+			$q = $ConnectionORM->getConnect()->expedientes_prestamos
 			->select("count(*) as cuenta")	
-                        ->join("estatus","INNER JOIN estatus e on e.id_estatus = expedientes.id_estatus") 
-			->join("personal","INNER JOIN personal p on p.id_persona = expedientes.id_persona")
+                        ->join("expedientes","INNER JOIN expedientes exp on exp.id_expediente = expedientes_prestamos.id_expediente")  
+                        ->join("personal","INNER JOIN personal p on p.id_persona = exp.id_persona")        
+                        ->join("estatus","INNER JOIN estatus e on e.id_estatus = exp.id_estatus") 
                         ->where("$where")
 			->fetch();
 			return $q['cuenta']; 			
 		}
-		public function getUserById($values){
+		public function getExpedientesPrestamosById($values){
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes
+			$q = $ConnectionORM->getConnect()->expedientes_prestamos
 			->select("*")
-			->where("expedientes.id_expediente=?",$values['id_expediente'])
+			->where("expedientes_prestamos.id_expediente_prestamo=?",$values['id_expediente_prestamo'])
 			->fetch();
-			return $q; 				
-			
-		}
-		public function getExpedienteByIdPersona($id_persona){
-			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes
-			->select("*")
-			->where("expedientes.id_persona=?",$id_persona)
-			->fetch();
-			return $q['id_expediente']; 				
-			
-		}
-		public function getExpedienteByCedula($doc_iden){
-                    
-			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes
-			->select("count(*) as cuenta")
-			->join("personal","INNER JOIN personal on personal.id_persona = expedientes.id_persona ")
-
-			->where("personal.doc_iden=?",strtoupper($doc_iden))
-			->fetch();
-                        //echo $q;
-			return $q['cuenta']; 				
+                        return $q; 				
 			
 		}
 		function deleteUser($id_user){
@@ -143,40 +125,39 @@
 			
 			
 		}		
-		function saveUser($values){
+		function saveExpedientesPrestamos($values){
 			 
                         $array = array(
+                            "id_expediente" => $values['id_expediente'],
                             "id_persona" => $values['id_persona'],
-                            "id_expediente" => $values['id_persona'],
-                            "nom_expediente" => $values['nom_expediente'],
-                            "id_grupo" => $values['id_grupo'],
-                            "clave" => hash('sha256',$values['clave']),
-                            "id_estatus" => $values['id_estatus']
+                            "fec_prestamo" => $values['fec_prestamo'],
+                            "aprobado" => "S",
+                            "autorizado_por" => $values['autorizado_por'],
+                            "documento" => $values['documento'],
+                            "numero_documento" => $values['numero_documento'],
+                            "fec_documento" => $values['fec_documento'],
+                            "fec_devolucion" => $values['fec_devolucion']
                             
                         );
+                        //print_r($array);;die;
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes()->insert($array);
-			$values['id_expediente'] = $ConnectionORM->getConnect()->expedientes()->insert_id();
+			$q = $ConnectionORM->getConnect()->expedientes_prestamos()->insert($array);
+			$values['id_expediente_prestamo'] = $ConnectionORM->getConnect()->expedientes_prestamos()->insert_id();
 			return $values;	
 			
 		}
-		function updateUser($values){
+		function updateExpedientesPrestamos($values){
 
                         $array = array(
-                            'nom_expediente' => $values['nom_expediente'],
-                            'id_grupo' => $values['id_grupo'],
-                            'id_estatus' => $values['id_estatus'],
+                            'fec_devolucion' => $values['fec_devolucion']
                             
                         );
                         
-			if(isset($values['clave']) and $values['clave']!='')
-			{
-				$array['clave'] = hash('sha256', $values['clave']);
-			}
-			$id_expediente = $values['id_expediente'];
-                        //echo $id_expediente;die;
+			$id_expediente_prestamo = $values['id_expediente_prestamo'];
+                        //echo $id_expediente_prestamo;die;
+                        //echo $id_expediente_prestamo;die;
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes("id_expediente", $id_expediente)->update($array);
+			$q = $ConnectionORM->getConnect()->expedientes_prestamos("id_expediente_prestamo", $id_expediente_prestamo)->update($array);
 			return $q;
 			
 		}
@@ -195,7 +176,7 @@
 			$ConnectionORM = new ConnectionORM();
 			$status = 1;
 			$date_updated = new NotORM_Literal("NOW()");
-			//obtengo el expediente master
+			//obtengo el usuario master
 			$q = $ConnectionORM->getConnect()->users_company
 			->select("id_user")->where("id_company=?",$id_company)->fetch();			
 			$id_user =  $q['id_user'];
@@ -205,7 +186,7 @@
 			->select("*")->where("id=?",$id_company)->fetch();			
 			$rif =  $q['rif'];			
 
-			//actualizo el status del expediente master a 1 activo
+			//actualizo el status del usuario master a 1 activo
 			$q = $ConnectionORM->getConnect()->users("id_user", $id_user)->update(array('status'=>$status,'date_updated'=>$date_updated));
 
 			//actualizo el status de la permisologia master a 1 activo
@@ -230,7 +211,7 @@
 			$ConnectionORM = new ConnectionORM();
 			$status = 0;
 			$date_updated = new NotORM_Literal("NOW()");
-			//obtengo el expediente master
+			//obtengo el usuario master
 			$q = $ConnectionORM->getConnect()->users_company
 			->select("id_user")->where("id_company=?",$id_company)->fetch();			
 			$id_user =  $q['id_user'];
@@ -240,7 +221,7 @@
 			->select("*")->where("id=?",$id_company)->fetch();			
 			$rif =  $q['rif'];			
 
-			//actualizo el status del expediente master a 1 activo
+			//actualizo el status del usuario master a 1 activo
 			$q = $ConnectionORM->getConnect()->users("id_user", $id_user)->update(array('status'=>$status,'date_updated'=>$date_updated));
 
 			//actualizo el status de la permisologia master a 1 activo
@@ -256,7 +237,7 @@
 			$Aws->desactivarGruero($id_user);
 
 		}		
-		public function getExpedientesOperatorList($values)
+		public function getExpedientesPrestamosOperatorList($values)
 		{	
 			$columns = array();
 			$columns[0] = 'id_user';
@@ -302,7 +283,7 @@
 			->limit($limit,$offset);
 			return $q; 			
 		}
-		public function getCountExpedientesOperatorList($values)
+		public function getCountExpedientesPrestamosOperatorList($values)
 		{	
 			$where = '1 = 1';
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
@@ -396,12 +377,12 @@
 		}
 		function comparePasswordByUser($values){
 			$valid = false;
-			$id_expediente = $_SESSION['id_expediente'];
+			$id_expediente_prestamo = $_SESSION['id_expediente_prestamo'];
 			$clave = hash("sha256", $values['clave_anterior']);
                         $ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes
+			$q = $ConnectionORM->getConnect()->usuarios
 			->select("count(*) as cuenta")
-			->where("id_expediente=?",$id_expediente)
+			->where("id_expediente_prestamo=?",$id_expediente_prestamo)
 			->and("clave=?",$clave)
 			->fetch();
                         //echo $q;die;
@@ -413,13 +394,13 @@
 			return $valid;
 		}		
 		function changePassword($values){
-			$id_expediente = $_SESSION['id_expediente'];
-                        //echo $id_expediente;die;
+			$id_expediente_prestamo = $_SESSION['id_expediente_prestamo'];
+                        //echo $id_expediente_prestamo;die;
                         $array = array(
                             'clave' => hash('sha256',$values['clave_nueva']) 
                         );
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->expedientes("id_expediente", $id_expediente)->update($array);
+			$q = $ConnectionORM->getConnect()->usuarios("id_expediente_prestamo", $id_expediente_prestamo)->update($array);
 			return $q;
 			
 		}

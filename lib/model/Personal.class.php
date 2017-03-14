@@ -155,13 +155,12 @@
 			
 		}
 		function updatePersonal($values){
-
+                       
                         $array = array(
                             "nombres" => $values['nombres'],
                             "apellidos" => $values['apellidos'],
                             "sexo" => $values['sexo'],
                             "fec_nac" => $values['fec_nac'],
-                            "doc_iden" => strtoupper($values['doc_iden']),
                             "id_ubicacion" => $values['id_ubicacion'],
                             "id_cargo" => $values['id_cargo'],
                             "id_estatus" => $values['id_estatus']
@@ -172,7 +171,6 @@
                         //echo $id_persona;die;
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->personal("id_persona", $id_persona)->update($array);
-                        
                         $array = array(
                             "id_estatus" => $values['id_estatus']
                             

@@ -6,7 +6,7 @@
 ?>
   <div class="form-group col-sm-4">
       <label for="doc_iden">Cédula<small class="text-danger">(*)</small></label>
-    <input type="text" name="doc_iden" class="form-control" id="doc_iden" placeholder="V-12345678" value="<?php if(isset($values['doc_iden']) and $values['doc_iden'] !='') echo $values['doc_iden'];?>">
+    <input type="text" name="doc_iden" class="form-control" id="doc_iden" placeholder="V-12345678" value="<?php if(isset($values['doc_iden']) and $values['doc_iden'] !='') echo $values['doc_iden'];?>" <?php echo $disabled;?>>
         <?php if(isset($errors['doc_iden']) and $errors['doc_iden']!=''):?>
         <div class="alert alert-danger"><?php echo $errors['doc_iden'];?></div>
         <?php endif;?>

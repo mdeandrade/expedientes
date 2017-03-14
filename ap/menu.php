@@ -33,6 +33,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-book"></i> Expedientes <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<?php echo full_url?>/ap/expedientes/index.php">Lista de expedientes</a></li>
+            <li><a href="<?php echo full_url?>/ap/Prestamos/index.php">Consulta de préstamos de expedientes</a></li>
           </ul>
         </li>
       </ul>
@@ -45,6 +46,7 @@
         </li>
         <li><a href="<?php echo full_url?>/ap/index.php?action=logout"><i class="fa fa-power-off"></i> Cerrar sesión</a></li>
       </ul>
+    <?php if($_SESSION['id_grupo']==1):?>
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Usuarios <span class="caret"></span></a>
@@ -64,16 +66,17 @@
 
         </ul>
         </li>
-      </ul>        
+      </ul>
+    <?php endif;?>        
        
-        <ul class="nav navbar-nav">
+        <!--<ul class="nav navbar-nav">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-area-chart"></i> Reportes<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<?php echo full_url?>/ap/expedientes/index.php">Expedientes</a></li>
           </ul>
         </li>
-        </ul>
+        </ul>-->
  
   </div><!-- /.container-fluid -->
 </nav>

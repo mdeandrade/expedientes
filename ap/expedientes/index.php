@@ -223,6 +223,7 @@ $values = array_merge($values,$_FILES);
                                        .'<input type="hidden" name="action" value="edit">  '
                                        .'<input type="hidden" name="id_persona" value="'.$id_persona.'">  '
                                        .'<button class="btn btn-default btn-sm" title="Ver detalle" type="submit"><i class="fa fa-edit  fa-pull-left fa-border"></i></button>'
+                                       .'<a title="Prestar expediente" class="btn btn-default" href="'.full_url.'/ap/Prestamos/index.php?action=new&id_expediente='.$id_expediente.'"><i class="fa fa-plus  fa-pull-left fa-border"></i></a>'
                                         .'</form>'
 					);	
 			}		

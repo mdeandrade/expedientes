@@ -1,12 +1,16 @@
 <?php include('../../view_header_app.php')?>
 <?php include('../menu.php')?>
 <?php 
+    $disabled = '';
     $Folios = new Folios();
     $ListasDependientes = new ListasDependientes();
     $listado_folios = $ListasDependientes -> getListadoFoliosActivos();
     $Utilitarios = new Utilitarios();
     //$Utilitarios ->getNombreArchivoPHP();
     $ExpedientesDetalles = new ExpedientesDetalles();
+    if(isset($values['action']) and $values['action'] == 'update'){
+        $disabled = "disabled";
+    }
 
 ?>
 <?php $data_archivo = $Folios->getListadoFolios();?>

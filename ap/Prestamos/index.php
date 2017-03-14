@@ -52,8 +52,8 @@ $values = array_merge($values,$_FILES);
 		executeNew($values,$errors);die;
             }else{
                 //print_r($values);die;
-                $Prestamo = new Prestamo();
-                $values = $Prestamo->saveUser($values);
+                $ExpedientesPrestamos = new ExpedientesPrestamos();
+                $values = $ExpedientesPrestamos->saveExpedientesPrestamos($values);
                
                 executeEdit($values);
             }
@@ -62,8 +62,9 @@ $values = array_merge($values,$_FILES);
 	function executeEdit($values = null,$errors = null,$msg = null)
 	{
 		//print_r($values);die;
-		$Prestamo = new Prestamo();
-		$values = $Prestamo->getUserById($values);
+		$ExpedientesPrestamos = new ExpedientesPrestamos();
+		$values = $ExpedientesPrestamos->getExpedientesPrestamosById($values);
+               
 		$values['action'] = 'update';
                 $values['msg'] = $msg;
 		
@@ -74,12 +75,12 @@ $values = array_merge($values,$_FILES);
 
             $errors = validate($values,$_FILES);
             if(count($errors)>0){
-               
+                //print_r($errors);die;
 		executeEdit($values,$errors);die;
             }else{
                
-                $Prestamo = new Prestamo();
-                $Prestamo ->updateUser($values);
+                $ExpedientesPrestamos = new ExpedientesPrestamos();
+                $ExpedientesPrestamos ->updateExpedientesPrestamos($values);
                 $msg = "Actualizado correctamente";
                 //print_r($values);die;
                 executeEdit($values,$errors,$msg);die;
@@ -89,9 +90,9 @@ $values = array_merge($values,$_FILES);
 	}
 	function executeListJson($values)
 	{
-		$Prestamo= new Prestamo();
-		$list_json = $Prestamo ->getPrestamoList($values);
-		$list_json_cuenta = $Prestamo ->getCountPrestamoList($values);
+		$ExpedientesPrestamos = new ExpedientesPrestamos();
+		$list_json = $ExpedientesPrestamos ->getExpedientesPrestamosList($values);
+		$list_json_cuenta = $ExpedientesPrestamos ->getCountExpedientesPrestamosList($values);
 		$array_json = array();
 		$array_json['recordsTotal'] = $list_json_cuenta;
 		$array_json['recordsFiltered'] = $list_json_cuenta;
@@ -100,16 +101,18 @@ $values = array_merge($values,$_FILES);
 			foreach ($list_json as $list) 
 			{
 
-				$id_expediente = $list['id_expediente'];
+				$id_expediente_prestamo = $list['id_expediente_prestamo'];
+                                $id_expediente = $list['id_expediente'];
 				$array_json['data'][] = array(
-					"id_expediente" => $id_expediente,
-					"nom_usuario" => $list['nom_usuario'],
-					"nom_grupo" => $list['nom_grupo'],
+					"id_expediente_prestamo" => $id_expediente_prestamo,
+					"cod_expediente" => $list['cod_expediente'],
+					"nom_persona" => $list['apellidos']." ".$list['nombres'],
 					"nom_estatus" => $list['nom_estatus'],
 					"actions" => 
-                                       '<form method="POST" action = "'.full_url.'/ap/Prestamo/index.php" >'
+                                       '<form method="POST" action = "'.full_url.'/ap/Prestamos/index.php" >'
                                        .'<input type="hidden" name="action" value="edit">  '
-                                       .'<input type="hidden" name="id_expediente" value="'.$id_expediente.'">  '
+                                       .'<input type="hidden" name="id_expediente_prestamo" value="'.$id_expediente_prestamo.'">  '
+                                        .'<input type="hidden" name="id_expediente" value="'.$id_expediente.'">  '
                                        .'<button class="btn btn-default btn-sm" title="Ver detalle" type="submit"><i class="fa fa-edit  fa-pull-left fa-border"></i></button>'
                                         .'</form>'
 					);	
@@ -118,9 +121,9 @@ $values = array_merge($values,$_FILES);
 			$array_json['recordsTotal'] = 0;
 			$array_json['recordsFiltered'] = 0;
 			$array_json['data'][0] = array(
-                            "id_expediente"=>null,
-                            "nom_usuario"=>"",
-                            "nom_grupo"=>"",
+                            "id_expediente_prestamo"=>null,
+                            "cod_expediente"=>"",
+                            "nom_persona"=>"",
                             "nom_estatus"=>"",
                             "actions"=>""
                             );

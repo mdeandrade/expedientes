@@ -12,7 +12,16 @@
             ->and('id_persona not in(select id_persona from usuarios)');
 	return $q; 				
 			
-	}  
+	}
+        public function getListadoPersonalActivo2(){
+            $ConnectionORM = new ConnectionORM();
+            $q = $ConnectionORM->getConnect()->personal
+            ->select("*")
+            ->where('id_estatus = ?',1)
+            ;
+	return $q; 				
+			
+	} 
         public function getListadoUbicacioneslActivas(){
             $ConnectionORM = new ConnectionORM();
             $q = $ConnectionORM->getConnect()->ubicaciones

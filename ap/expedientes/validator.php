@@ -6,17 +6,18 @@
 	function validate($values,$files = null){
 
 
-		
+		$Expedientes = new Expedientes();
+                
 		$errors = array();
 		$validator_values = array();
 		$ValidateBase = new ValidateBase();
 		$errors = $ValidateBase->validate_base($validator_values, $values);
                 
-                if (!preg_match("/^[Vv,Ee][-][1-9][0-9]{5,7}$/", $values['doc_iden'], $matches))      
+                if (!preg_match("/^[Vv,Ee][-][1-9][0-9]{5,7}$/", $values['doc_iden'], $matches) and $values['action']=='add')      
                 {
                     $errors['doc_iden'] = "Verifique el formato de la cédula (V-1234567)";
                 }
-                 if (!preg_match("/^[A-Z a-z]{3,80}$/", $values['nombres'], $matches))      
+                 if (!preg_match("/^[A-Z a-z]{3,80}$/", $values['nombres'], $matches) )      
                 {
                     $errors['nombres'] = "El campo debe contener solamente letras";
                 }
@@ -24,7 +25,7 @@
                 {
                     $errors['apellidos'] = "El campo debe contener solamente letras";
                 }
-                if(!isset($values['doc_iden']) or $values['doc_iden']=='')
+                if(!isset($values['doc_iden'])  and $values['action']=='add')
                 {
                     $errors['doc_iden'] = "El campo cédula es requerido";
                 }
@@ -56,6 +57,18 @@
                 {
                     $errors['id_ubicacion'] = "El campo ubicación es requerido";
                 } 
+                
+                if(isset($values['doc_iden']) and $values['doc_iden']!='' and $values['action']=='add')
+                {
+                    //echo "aaa";die;
+                    $existe_cedula = $Expedientes->getExpedienteByCedula($values['doc_iden']);
+                    //echo $existe_cedula;die;
+                    if($existe_cedula!=0){
+                        $errors['doc_iden'] = "Ya existe una persona registrada con el número de cédula indicado";
+                    }
+                }
+                
+                
                 return $errors;
 		
 		

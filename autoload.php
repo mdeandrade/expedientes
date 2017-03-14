@@ -71,6 +71,8 @@ include($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/model/Folios.class.php')
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/model/Personal.class.php');
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/model/Expedientes.class.php');
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/model/ExpedientesDetalles.class.php');
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/model/ExpedientesPrestamos.class.php');
+
 
 /*validation class*/
 

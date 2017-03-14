@@ -1,14 +1,13 @@
 <?php include('../../view_header_app.php')?>
 <?php include('../menu.php')?>
 <div class="container">
-	<h1 class="text-center big_title">Préstamo de expediente</h1>
+	<h1 class="text-center big_title">Préstamos de expedientes</h1>
 	<table id="example" class="table table-striped table-bordered table-responsive" width="100%" cellspacing="0">
 			<thead>
 				<tr>
-					<th>ID.Expediente</th>
-                                        <th>Nombre del Expediente</th>
-                                        <th>Grupo</th>
-                                        <th>Estatus</th>
+					<th>ID.Préstamo</th>
+                                        <th>Código de expediente</th>
+                                        <th>Funcionario expediente</th>
 					<th>Detalle</th>
 				</tr>
 			</thead>
@@ -16,14 +15,13 @@
 				<tr>
 					<th><input id="idPoliza" name="id_usuario" type="text"></th>
                                         <th><input id="Seguro" name="nom_usuario" type="text"></th>
-                                        <th><input id="NumPoliza" name="id_grupo" type="text"></th>
-                                        <th><input id="Placa" name="id_estatus" type="text"></th>			
+                                        <th><input id="NumPoliza" name="id_grupo" type="text"></th>			
 					<th>Detalle</th>
 				</tr>
 			</tfoot>
 		</table>
 
-	<a class="btn btn-success"  href="<?php echo full_url."/ap/Prestamo/index.php?action=new"?>"><i class="fa fa-file-o fa-pull-left fa-border"></i> Agregar</a>
+	<!--<a class="btn btn-success"  href="<?php echo full_url."/ap/Prestamos/index.php?action=new"?>"><i class="fa fa-file-o fa-pull-left fa-border"></i> Agregar</a>-->
 </div>
 	<?php include('../../view_footer_solicitud.php')?>
 <script>
@@ -50,20 +48,23 @@ $(document).ready(function() {
         "scrollX": true,
         "processing": true,
         "serverSide": true,
-		 "sDom": 'ltrip',
-        "ajax": "<?php echo full_url."/ap/Prestamo/index.php?action=list_json"?>",
+		 /*"sDom": 'ltrip',*/
+        "ajax": "<?php echo full_url."/ap/Prestamos/index.php?action=list_json"?>",
 		"language": {
                 "url": "<?php echo full_url."/web/js/"?>datatables.spanish.lang"
-        },
+        }, buttons: [
+            'excelHtml5',
+            'csvHtml5',
+        ],
+         dom: 'Brtip',
         "columns": [
-            { "data": "id_usuario" },
-            { "data": "nom_usuario" },
-            { "data": "nom_grupo" },
-            { "data": "nom_estatus" },
+            { "data": "id_expediente_prestamo" },
+            { "data": "cod_expediente" },
+            { "data": "nom_persona" },
             { "data": "actions" }
         ],
       "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ 4 ] }
+          { 'bSortable': false, 'aTargets': [ 3 ] }
        ]				
     });
 
