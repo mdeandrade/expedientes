@@ -1,0 +1,21 @@
+body{
+    font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif !important;
+
+}
+h4 {
+    font-size: 16px !important;
+}
+body{
+  margin: 0;
+  padding: 0;
+  padding-bottom: 20px;
+  /*color: #fff !important;*/
+  text-align: center;
+  /*background: #18BC9C;*/
+  background: url(../img/contraloria_opaca.png) ;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 200px;
+  background-color: #fff;    
+}
