@@ -1,6 +1,6 @@
 /*
-SQLyog Community v12.2.0 (32 bit)
-MySQL - 5.5.54-0+deb7u2 : Database - expedientes
+SQLyog Community v12.15 (64 bit)
+MySQL - 5.5.53-0ubuntu0.14.04.1 : Database - expedientes
 *********************************************************************
 */
 
@@ -13,8 +13,6 @@ MySQL - 5.5.54-0+deb7u2 : Database - expedientes
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`expedientes` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `expedientes`;
 
 /*Table structure for table `cargos` */
 
@@ -97,32 +95,31 @@ CREATE TABLE `expedientes_detalles` (
 
 /*Data for the table `expedientes_detalles` */
 
+insert  into `expedientes_detalles`(`id_expediente`,`id_folio`,`id_tipdoc`,`ubi_docserver`,`fec_creado`,`id_estatus`) values 
+(1,3,20,'//ANTIGUEDAD/antecedenteservicios_0.doc','2017-03-14',1);
+
 /*Table structure for table `expedientes_prestamos` */
 
 DROP TABLE IF EXISTS `expedientes_prestamos`;
 
 CREATE TABLE `expedientes_prestamos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_expediente_prestamo` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL,
   `id_persona` int(11) DEFAULT NULL COMMENT 'Persona a la que se presta',
   `fec_prestamo` datetime DEFAULT NULL,
   `fec_devolucion` datetime DEFAULT NULL,
   `aprobado` varchar(1) DEFAULT 'S' COMMENT 'S = Si, N = No',
-  `autorizado_por` int(11) DEFAULT NULL COMMENT 'id_persona que autorizo',
+  `autorizado_por` int(11) DEFAULT NULL COMMENT 'id_persona que autorizooooooooo',
   `documento` varchar(50) DEFAULT 'MEMORANDO' COMMENT 'MEMORANDUM, OFICIO',
   `numero_documento` varchar(50) DEFAULT NULL,
   `fec_documento` date DEFAULT NULL,
-  PRIMARY KEY (`id_expediente`),
+  PRIMARY KEY (`id_expediente_prestamo`),
   KEY `id_persona` (`id_persona`),
-  KEY `id` (`id`),
-  CONSTRAINT `expedientes_prestamos_ibfk_1` FOREIGN KEY (`id_expediente`) REFERENCES `expedientes` (`id_expediente`),
+  KEY `id` (`id_expediente_prestamo`),
   CONSTRAINT `expedientes_prestamos_ibfk_2` FOREIGN KEY (`id_persona`) REFERENCES `personal` (`id_persona`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `expedientes_prestamos` */
-
-insert  into `expedientes_prestamos`(`id`,`id_expediente`,`id_persona`,`fec_prestamo`,`fec_devolucion`,`aprobado`,`autorizado_por`,`documento`,`numero_documento`,`fec_documento`) values 
-(1,1,2,'2017-03-14 00:00:00',NULL,'S',2,'MEMORANDO','C2017001','2017-03-31');
 
 /*Table structure for table `folios` */
 
@@ -256,7 +253,7 @@ CREATE TABLE `personal` (
 /*Data for the table `personal` */
 
 insert  into `personal`(`id_persona`,`nombres`,`apellidos`,`sexo`,`fec_nac`,`tip_dociden`,`doc_iden`,`id_ubicacion`,`id_cargo`,`id_estatus`) values 
-(1,'DENINSON','CABEZA','M','1989-10-04','CED','V-19195437',1,1,1),
+(1,'DENINSON','CABEZA','M','1989-10-04','CED','V-19195437',9,1,1),
 (2,'MARCOS','DE ANDRADE','M','2017-03-14','CED','V-18020594',1,1,1);
 
 /*Table structure for table `tipo_grupos` */
